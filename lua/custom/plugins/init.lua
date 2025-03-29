@@ -29,4 +29,20 @@ return {
       -- neo-tree options here
     },
   },
+  {
+    -- lsp_lines, used to provide multi-line and character-specific error/diagonstic info
+    'ErichDonGubler/lsp_lines.nvim',
+    init = function()
+      require('lsp_lines').setup()
+    end,
+    config = function()
+      require('lsp_lines').setup()
+      -- specialized config for lsp_lines here
+      vim.keymap.set('', '<Leader>l', require('lsp_lines').toggle, { desc = '[l]sp_lines Diagnostics Toggle' })
+    end,
+  },
+  -- Disable virtual_text since it's redundant due to lsp_lines.
+  vim.diagnostic.config {
+    virtual_text = false,
+  },
 }
